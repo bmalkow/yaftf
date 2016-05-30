@@ -1,43 +1,19 @@
 <resources>
     <string name="app_name">Fuzzy Text</string>
     <string name="my_digital_name">Fuzzy Text</string>
-    <string name="date_format">%1$s\n%2$s %3$s</string>
     <string-array name="rels">
         <item>*%1$s o\'clock</item>
-        <item>five after *%1$s</item>
-        <item>ten after *%1$s</item>
-        <item>quarter after *%1$s</item>
-        <item>twenty after *%1$s</item>
-        <item>twenty five after *%1$s</item>
+        <item>five past *%1$s</item>
+        <item>ten past *%1$s</item>
+        <item>quarter past *%1$s</item>
+        <item>twenty past *%1$s</item>
+        <item>twenty five past *%1$s</item>
         <item>half past *%1$s</item>
         <item>twenty five to *%2$s</item>
         <item>twenty to *%2$s</item>
         <item>quarter to *%2$s</item>
         <item>ten to *%2$s</item>
         <item>five to *%2$s</item>
-    </string-array>
-    <string-array name="days">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thur</item>
-        <item>Fri</item>
-        <item>Sat</item>
-    </string-array>
-    <string-array name="months">
-        <item>Jan</item>
-        <item>Feb</item>
-        <item>Mar</item>
-        <item>Apr</item>
-        <item>May</item>
-        <item>Jun</item>
-        <item>Jul</item>
-        <item>Aug</item>
-        <item>Sep</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>Dec</item>
     </string-array>
     <string-array name="hours">
 
