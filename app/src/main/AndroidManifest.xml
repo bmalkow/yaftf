@@ -6,6 +6,7 @@
 
     <!-- Required to act as a custom watch face. -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -37,6 +38,13 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
+        <receiver android:name=".DisconnectListenerService">
+            <intent-filter>
+                <action android:name="pl.tajchert.servicewear.wearservice" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@
     <string name="app_name">Fuzzy Text</string>
     <string name="my_digital_name">Fuzzy Text</string>
     <string name="date_format">*%1$s \n%2$s %3$s</string>
+    <string name="connection_lost">Hey dude! Where is your phone?</string>
     <string-array name="rels">
         <item>*%1$s o\'clock</item>
         <item>five after *%1$s</item>

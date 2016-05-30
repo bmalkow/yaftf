@@ -29,6 +29,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.text.Layout;
@@ -54,6 +55,17 @@ import java.util.concurrent.TimeUnit;
 public class FuzzyWatchFace extends CanvasWatchFaceService {
     private static final Typeface NORMAL_TYPEFACE =
             Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+    private Engine engine;
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && "peer-connected".equals(intent.getAction())) {
+            engine.onConnected();
+        } else if (intent != null && "peer-disconnected".equals(intent.getAction())) {
+            engine.onConnectionLost();
+        }
+        return super.onStartCommand(intent, flags, startId);
+    }
 
     /**
      * Update rate in milliseconds for interactive mode. We update once a second since seconds are
@@ -68,8 +80,10 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
 
     @Override
     public Engine onCreateEngine() {
-        return new Engine();
+        this.engine = new Engine();
+        return engine;
     }
+
 
     private static class EngineHandler extends Handler {
         private final WeakReference<FuzzyWatchFace.Engine> mWeakReference;
@@ -91,7 +105,7 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
         }
     }
 
-    static enum DisplayedInfo {
+    enum DisplayedInfo {
         watchFace, date, connectionLost;
     }
 
@@ -176,7 +190,30 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
 
             mDateTextPaint.setTextSize(resources.getDimension(isRound
                     ? R.dimen.digital_date_size_round : R.dimen.digital_date_size));
+
+            mAlertTextPaint.setTextSize(resources.getDimension(isRound
+                    ? R.dimen.digital_alert_size_round : R.dimen.digital_alert_size));
         }
+
+
+        private void onConnected() {
+            visibleInformation = DisplayedInfo.watchFace;
+            invalidate();
+        }
+
+
+        private void onConnectionLost() {
+            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            long[] vibrationPattern = {0, 500, 50, 300};
+            //-1 - don't repeat
+            final int indexInPatternToRepeat = -1;
+            vibrator.vibrate(vibrationPattern, indexInPatternToRepeat);
+
+            handler.removeCallbacks(returnToWatchFaceTask);
+            visibleInformation = DisplayedInfo.connectionLost;
+            invalidate();
+        }
+
 
         @Override
         public void onCreate(SurfaceHolder holder) {
@@ -196,8 +233,11 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             mTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
 
             mDateTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
-            mDateTextPaint.setTextSize(mTextPaint.getTextSize() / 2);
+
+            mAlertTextPaint = createTextPaint(resources.getColor(R.color.alert_text));
         }
+
+        private TextPaint mAlertTextPaint;
 
         @Override
         public void onDestroy() {
@@ -278,6 +318,9 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             }
 
             switch (visibleInformation) {
+                case connectionLost:
+                    drawConnectionLost(canvas, bounds);
+                    break;
                 case date:
                     drawDate(canvas, bounds);
                     break;
@@ -286,6 +329,21 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             }
 
 
+        }
+
+        private void drawConnectionLost(Canvas canvas, Rect bounds) {
+            SpannableString wordtoSpan = arrayToSpannable(getResources().getString(R.string.connection_lost).split(" "));
+
+            StaticLayout sl = new StaticLayout(wordtoSpan, mAlertTextPaint, (int) (bounds.width() - mXPadding * 2),
+                    Layout.Alignment.ALIGN_CENTER, 1, 1, false);
+
+            canvas.save();
+
+            canvas.translate((canvas.getWidth() / 2) - (sl.getWidth() / 2), (canvas.getHeight() / 2) - ((sl.getHeight() / 2)));
+
+            //draws static layout on canvas
+            sl.draw(canvas);
+            canvas.restore();
         }
 
         private void drawDate(Canvas canvas, Rect bounds) {
@@ -436,4 +494,6 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             }
         }
     }
+
+
 }

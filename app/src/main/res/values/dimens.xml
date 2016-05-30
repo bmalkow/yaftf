@@ -2,8 +2,13 @@
 <resources>
     <dimen name="digital_text_size">40dp</dimen>
     <dimen name="digital_date_size">40dp</dimen>
+    <dimen name="digital_alert_size">32dp</dimen>
+
     <dimen name="digital_text_size_round">40dp</dimen>
     <dimen name="digital_date_size_round">40dp</dimen>
+    <dimen name="digital_alert_size_round">32dp</dimen>
+
+
     <dimen name="digital_x_padding">15dp</dimen>
     <dimen name="digital_x_padding_round">25dp</dimen>
 
