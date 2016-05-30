@@ -90,11 +90,17 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
         }
     }
 
+    static enum DisplayedInfo {
+        watchFace, date, connectionLost;
+    }
+
+
     private class Engine extends CanvasWatchFaceService.Engine {
         final Handler mUpdateTimeHandler = new EngineHandler(this);
         boolean mRegisteredTimeZoneReceiver = false;
         Paint mBackgroundPaint;
         TextPaint mTextPaint;
+        TextPaint mDateTextPaint;
         boolean mAmbient;
         private String timeZone;
         final BroadcastReceiver mTimeZoneReceiver = new BroadcastReceiver() {
@@ -103,7 +109,9 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
                 timeZone = intent.getStringExtra("time-zone");
             }
         };
-        int mTapCount;
+
+        DisplayedInfo visibleInformation = DisplayedInfo.watchFace;
+
 
         /**
          * Whether the display supports fewer bits for each color in ambient mode. When true, we
@@ -111,6 +119,7 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
          */
         boolean mLowBitAmbient;
         private float mXPadding;
+        private float mYPadding;
 
         private TextPaint createTextPaint(int textColor) {
             TextPaint paint = new TextPaint();
@@ -158,10 +167,14 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             boolean isRound = insets.isRound();
             this.mXPadding = resources.getDimension(isRound
                     ? R.dimen.digital_x_padding_round : R.dimen.digital_x_padding);
-            float textSize = resources.getDimension(isRound
-                    ? R.dimen.digital_text_size_round : R.dimen.digital_text_size);
+            this.mYPadding = resources.getDimension(isRound
+                    ? R.dimen.digital_y_padding_round : R.dimen.digital_y_padding);
 
-            mTextPaint.setTextSize(textSize);
+            mTextPaint.setTextSize(resources.getDimension(isRound
+                    ? R.dimen.digital_text_size_round : R.dimen.digital_text_size));
+
+            mDateTextPaint.setTextSize(resources.getDimension(isRound
+                    ? R.dimen.digital_date_size_round : R.dimen.digital_date_size));
         }
 
         @Override
@@ -180,6 +193,9 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             mBackgroundPaint.setColor(resources.getColor(R.color.background));
 
             mTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
+
+            mDateTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
+            mDateTextPaint.setTextSize(mTextPaint.getTextSize() / 2);
         }
 
         @Override
@@ -189,28 +205,18 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
         }
 
 
-        private SpannableString timeToSpannable() {
+        private SpannableString dateToSpannable() {
             GregorianCalendar gc = new GregorianCalendar(timeZone == null ? TimeZone.getDefault() : TimeZone.getTimeZone(timeZone));
+            int dayNumber = gc.get(Calendar.DAY_OF_MONTH);
+            int year = gc.get(Calendar.YEAR);
+            String dayName = getResources().getStringArray(R.array.days)[gc.get(Calendar.DAY_OF_WEEK) - 1];
+            String monthName = getResources().getStringArray(R.array.months)[gc.get(Calendar.MONTH)];
 
-            int half_mins = (2 * gc.get(Calendar.MINUTE)) + (gc.get(Calendar.SECOND) / 30);
-            int rel_index = ((half_mins + 5) / (2 * 5)) % 12;
-            int hour_index;
+            String[] t = getResources().getString(R.string.date_format, dayName, dayNumber, monthName).split(" ");
+            return arrayToSpannable(t);
+        }
 
-            if (rel_index == 0 && gc.get(Calendar.MINUTE) > 30) {
-                hour_index = (gc.get(Calendar.HOUR_OF_DAY) + 1) % 24;
-            } else {
-                hour_index = gc.get(Calendar.HOUR_OF_DAY) % 24;
-            }
-
-
-            String hour = getResources().getStringArray(R.array.hours)[hour_index];
-            String next_hour = getResources().getStringArray(R.array.hours)[(hour_index + 1) % 24];
-            String rel = getResources().getStringArray(R.array.rels)[rel_index];
-
-
-            String[] t = String.format(rel, hour, next_hour).split(" ");
-
-
+        private SpannableString arrayToSpannable(String[] t) {
             StringBuilder sb = new StringBuilder();
 
             for (String x : t) {
@@ -233,20 +239,69 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
                     l += x.length() + 1;
                 }
             }
-
             return wordtoSpan;
+        }
+
+        private SpannableString timeToSpannable() {
+            GregorianCalendar gc = new GregorianCalendar(timeZone == null ? TimeZone.getDefault() : TimeZone.getTimeZone(timeZone));
+
+            int half_mins = (2 * gc.get(Calendar.MINUTE)) + (gc.get(Calendar.SECOND) / 30);
+            int rel_index = ((half_mins + 5) / (2 * 5)) % 12;
+            int hour_index;
+
+            if (rel_index == 0 && gc.get(Calendar.MINUTE) > 30) {
+                hour_index = (gc.get(Calendar.HOUR_OF_DAY) + 1) % 24;
+            } else {
+                hour_index = gc.get(Calendar.HOUR_OF_DAY) % 24;
+            }
+
+
+            String hour = getResources().getStringArray(R.array.hours)[hour_index];
+            String next_hour = getResources().getStringArray(R.array.hours)[(hour_index + 1) % 24];
+            String rel = getResources().getStringArray(R.array.rels)[rel_index];
+
+
+            String[] t = String.format(rel, hour, next_hour).split(" ");
+            return arrayToSpannable(t);
         }
 
 
         @Override
         public void onDraw(Canvas canvas, Rect bounds) {
-            // Draw the background.
             if (isInAmbientMode()) {
                 canvas.drawColor(Color.BLACK);
             } else {
                 canvas.drawRect(0, 0, bounds.width(), bounds.height(), mBackgroundPaint);
             }
 
+            switch (visibleInformation) {
+                case date:
+                    drawDate(canvas, bounds);
+                    break;
+                default:
+                    drawPlainWatchFace(canvas, bounds);
+            }
+
+
+        }
+
+        private void drawDate(Canvas canvas, Rect bounds) {
+            SpannableString wordtoSpan = dateToSpannable();
+
+            StaticLayout sl = new StaticLayout(wordtoSpan, mDateTextPaint, (int) (bounds.width() - mXPadding * 2),
+                    Layout.Alignment.ALIGN_CENTER, 1, 1, false);
+
+            canvas.save();
+
+            canvas.translate((canvas.getWidth() / 2) - (sl.getWidth() / 2), (canvas.getHeight() / 2) - ((sl.getHeight() / 2)));
+
+            //draws static layout on canvas
+            sl.draw(canvas);
+            canvas.restore();
+        }
+
+        private void drawPlainWatchFace(Canvas canvas, Rect bounds) {
+            // Draw the background.
             SpannableString wordtoSpan = timeToSpannable();
             StaticLayout sl = new StaticLayout(wordtoSpan, mTextPaint, (int) (bounds.width() - mXPadding * 2),
                     Layout.Alignment.ALIGN_CENTER, 1, 1, false);
@@ -258,8 +313,6 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             //draws static layout on canvas
             sl.draw(canvas);
             canvas.restore();
-
-
         }
 
 
@@ -268,6 +321,17 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
             super.onPropertiesChanged(properties);
             mLowBitAmbient = properties.getBoolean(PROPERTY_LOW_BIT_AMBIENT, false);
         }
+
+
+        Handler handler = new Handler();
+
+        private final Runnable returnToWatchFaceTask = new Runnable() {
+            @Override
+            public void run() {
+                visibleInformation = DisplayedInfo.watchFace;
+                invalidate();
+            }
+        };
 
         /**
          * Captures tap event (and tap type) and toggles the background color if the user finishes
@@ -285,13 +349,29 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
                     break;
                 case TAP_TYPE_TAP:
                     // The user has completed the tap gesture.
-                    mTapCount++;
-                    mBackgroundPaint.setColor(resources.getColor(mTapCount % 2 == 0 ?
-                            R.color.background : R.color.background2));
+
+                    switch (visibleInformation) {
+                        case watchFace:
+                            visibleInformation = DisplayedInfo.date;
+                            handler.postDelayed(returnToWatchFaceTask, 3 * 1000);
+                            break;
+                        case date:
+                            visibleInformation = DisplayedInfo.watchFace;
+                            handler.removeCallbacks(returnToWatchFaceTask);
+                            break;
+                        case connectionLost:
+                            visibleInformation = DisplayedInfo.watchFace;
+                            break;
+                    }
+
+//                    mTapCount++;
+//                    mBackgroundPaint.setColor(resources.getColor(mTapCount % 2 == 0 ?
+//                            R.color.background : R.color.background2));
                     break;
             }
             invalidate();
         }
+
 
         @Override
         public void onTimeTick() {
