@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fuzzy Text</string>
+
+    <string-array name="rels">
+        <item>*%1$s en punto</item>
+        <item>*%1$s y cinco</item>
+        <item>*%1$s y diez</item>
+        <item>*%1$s y cuarto</item>
+        <item>*%1$s y veinte</item>
+        <item>*%1$s y veinti- cinco</item>
+        <item>*%1$s y media</item>
+        <item>*%2$s menos veinti- cinco</item>
+        <item>*%2$s menos veinte</item>
+        <item>*%2$s menos cuarto</item>
+        <item>*%2$s menos diez</item>
+        <item>*%2$s menos cinco</item>
+    </string-array>
+
+    <string-array name="hours">
+
+        <!--AM hours-->
+        <item>doce</item>
+        <item>una</item>
+        <item>dos</item>
+        <item>tres</item>
+        <item>cuatro</item>
+        <item>cinco</item>
+        <item>seis</item>
+        <item>siete</item>
+        <item>ocho</item>
+        <item>nueve</item>
+        <item>diez</item>
+        <item>once</item>
+
+        <!--PM hours-->
+        <item>doce</item>
+        <item>una</item>
+        <item>dos</item>
+        <item>tres</item>
+        <item>cuatro</item>
+        <item>cinco</item>
+        <item>seis</item>
+        <item>siete</item>
+        <item>ocho</item>
+        <item>nueve</item>
+        <item>diez</item>
+        <item>once</item>
+    </string-array>
+    <string name="my_digital_name">Fuzzy Text</string>
+</resources>
