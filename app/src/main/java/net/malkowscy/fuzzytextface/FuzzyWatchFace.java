@@ -36,6 +36,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.SurfaceHolder;
 import android.view.WindowInsets;
@@ -229,10 +230,12 @@ public class FuzzyWatchFace extends CanvasWatchFaceService {
 
             SpannableString wordtoSpan = new SpannableString(sb.toString().trim());
 
+
             int l = 0;
             for (String x : t) {
                 if (x.startsWith("*")) {
                     int n = x.substring(1).length();
+                    wordtoSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.digital_text_bold)), l, l + n, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), l, l + n, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     l += n + 1;
                 } else {
