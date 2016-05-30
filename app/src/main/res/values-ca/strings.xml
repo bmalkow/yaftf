@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="rels">
+        <item>*%1$s en punt</item>
+        <item>*%1$s y cinc</item>
+        <item>*%1$s y deu</item>
+        <item>un quart de *%2$s</item>
+        <item>un quart i cinc de *%2$s</item>
+        <item>un quart i deu *%2$s</item>
+        <item>dos quarts de *%2$s</item>
+        <item>dos quarts i cinc de *%2$s</item>
+        <item>dos quarts i deu de *%2$s</item>
+        <item>tres quarts de *%2$s</item>
+        <item>tres quarts i cinc de *%2$s</item>
+        <item>tres quarts i deu de *%2$s</item>
+    </string-array>
+
+    <string-array name="hours">
+
+        <!--AM hours-->
+        <item>dotze</item>
+        <item>una</item>
+        <item>dos</item>
+        <item>tres</item>
+        <item>quatre</item>
+        <item>cinc</item>
+        <item>sis</item>
+        <item>set</item>
+        <item>vuit</item>
+        <item>nou</item>
+        <item>deu</item>
+        <item>onze</item>
+
+        <!--PM hours-->
+        <item>dotze</item>
+        <item>una</item>
+        <item>dos</item>
+        <item>tres</item>
+        <item>quatre</item>
+        <item>cinc</item>
+        <item>sis</item>
+        <item>set</item>
+        <item>vuit</item>
+        <item>nou</item>
+        <item>deu</item>
+        <item>onze</item>
+    </string-array>
+</resources>

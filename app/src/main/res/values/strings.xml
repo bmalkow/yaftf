@@ -18,27 +18,27 @@
         <item>five to *%2$s</item>
     </string-array>
     <string-array name="days">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thur</item>
-        <item>Fri</item>
-        <item>Sat</item>
+        <item>sun</item>
+        <item>mon</item>
+        <item>tue</item>
+        <item>wed</item>
+        <item>thur</item>
+        <item>fri</item>
+        <item>sat</item>
     </string-array>
     <string-array name="months">
-        <item>Jan</item>
-        <item>Feb</item>
-        <item>Mar</item>
-        <item>Apr</item>
-        <item>May</item>
-        <item>Jun</item>
-        <item>Jul</item>
-        <item>Aug</item>
-        <item>Sep</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>Dec</item>
+        <item>jan</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>apr</item>
+        <item>may</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dec</item>
     </string-array>
     <string-array name="hours">
 

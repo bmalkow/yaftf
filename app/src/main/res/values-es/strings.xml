@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fuzzy Text</string>
-
     <string-array name="rels">
         <item>*%1$s en punto</item>
         <item>*%1$s y cinco</item>
@@ -47,5 +45,4 @@
         <item>diez</item>
         <item>once</item>
     </string-array>
-    <string name="my_digital_name">Fuzzy Text</string>
 </resources>

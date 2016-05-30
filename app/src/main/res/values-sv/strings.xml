@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="rels">
+        <item>*%1$s</item>
+        <item>fem över *%1$s</item>
+        <item>tio över *%1$s</item>
+        <item>kvart över *%1$s</item>
+        <item>tjugo över *%1$s</item>
+        <item>fem i halv *%2$s</item>
+        <item>halv *%2$s</item>
+        <item>fem över halv *%2$s</item>
+        <item>tjugo i *%2$s</item>
+        <item>kvart i *%2$s</item>
+        <item>tio i *%2$s</item>
+        <item>fem i *%2$s</item>
+    </string-array>
+
+    <string-array name="hours">
+
+        <!--AM hours-->
+        <item>tolv</item>
+        <item>ett</item>
+        <item>två</item>
+        <item>tre</item>
+        <item>fyra</item>
+        <item>fem</item>
+        <item>sex</item>
+        <item>sju</item>
+        <item>åtta</item>
+        <item>nio</item>
+        <item>tio</item>
+        <item>elva</item>
+
+        <!--PM hours-->
+        <item>tolv</item>
+        <item>ett</item>
+        <item>två</item>
+        <item>tre</item>
+        <item>fyra</item>
+        <item>fem</item>
+        <item>sex</item>
+        <item>sju</item>
+        <item>åtta</item>
+        <item>nio</item>
+        <item>tio</item>
+        <item>elva</item>
+    </string-array>
+</resources>

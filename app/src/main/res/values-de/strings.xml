@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="rels">
+       <item>*%1$s Uhr</item>
+       <item>fünf nach *%1$s</item>
+       <item>zehn nach *%1$s</item>
+       <item>viertel nach *%1$s</item>
+       <item>zwanzig nach *%1$s</item>
+       <item>fünf vor halb *%2$s</item>
+       <item>halb *%2$s</item>
+       <item>fünf nach halb *%2$s</item>
+       <item>zwanzig vor *%2$s</item>
+       <item>viertel vor *%2$s</item>
+       <item>zehn vor *%2$s</item>
+       <item>fünf vor *%2$s</item>
+    </string-array>
+
+    <string-array name="hours">
+
+         <!--AM hours-->
+       <item>zwölf</item>
+       <item>eins</item>
+       <item>zwei</item>
+       <item>drei</item>
+       <item>vier</item>
+       <item>fünf</item>
+       <item>sechs</item>
+       <item>sieben</item>
+       <item>acht</item>
+       <item>neun</item>
+       <item>zehn</item>
+       <item>elf</item>
+
+         <!--PM hours-->
+       <item>zwölf</item>
+       <item>eins</item>
+       <item>zwei</item>
+       <item>drei</item>
+       <item>vier</item>
+       <item>fünf</item>
+       <item>sechs</item>
+       <item>sieben</item>
+       <item>acht</item>
+       <item>neun</item>
+       <item>zehn</item>
+       <item>elf</item>
+    </string-array>
+</resources>

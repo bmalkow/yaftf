@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="rels">
+        <item>*%1$s heures</item>
+        <item>*%1$s heures cinq</item>
+        <item>*%1$s heures dix</item>
+        <item>*%1$s heures et quart</item>
+        <item>*%1$s heures vingt</item>
+        <item>*%1$s heures vingt- cinq</item>
+        <item>*%1$s heures et demie</item>
+        <item>*%2$s moins vingt- cinq</item>
+        <item>*%2$s heures moins vingt</item>
+        <item>*%2$s moins le quart</item>
+        <item>*%2$s heures moins dix</item>
+        <item>*%2$s heures moins cinq</item>
+    </string-array>
+
+    <string-array name="hours">
+
+        <!--AM hours-->
+        <item>douze</item>
+        <item>une</item>
+        <item>deux</item>
+        <item>trois</item>
+        <item>quatre</item>
+        <item>cinq</item>
+        <item>six</item>
+        <item>sept</item>
+        <item>huit</item>
+        <item>neuf</item>
+        <item>dix</item>
+        <item>onze</item>
+
+        <!--PM hours-->
+        <item>douze</item>
+        <item>une</item>
+        <item>deux</item>
+        <item>trois</item>
+        <item>quatre</item>
+        <item>cinq</item>
+        <item>six</item>
+        <item>sept</item>
+        <item>huit</item>
+        <item>neuf</item>
+        <item>dix</item>
+        <item>onze</item>
+    </string-array>
+</resources>

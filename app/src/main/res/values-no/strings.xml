@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="rels">
+       <item>klokka er *%1$s</item>
+       <item>fem over *%1$s</item>
+       <item>ti over *%1$s</item>
+       <item>kvart over *%1$s</item>
+       <item>ti på halv *%2$s</item>
+       <item>fem på halv *%2$s</item>
+       <item>halv *%2$s</item>
+       <item>fem over halv *%2$s</item>
+       <item>ti over halv *%2$s</item>
+       <item>kvart på *%2$s</item>
+       <item>ti på *%2$s</item>
+       <item>fem på *%2$s</item>
+    </string-array>
+
+    <string-array name="hours">
+
+         <!--AM hours-->
+       <item>tolv</item>
+       <item>ett</item>
+       <item>to</item>
+       <item>tre</item>
+       <item>fire</item>
+       <item>fem</item>
+       <item>seks</item>
+       <item>sju</item>
+       <item>åtte</item>
+       <item>ni</item>
+       <item>ti</item>
+       <item>elleve</item>
+
+         <!--PM hours-->
+       <item>tolv</item>
+       <item>ett</item>
+       <item>to</item>
+       <item>tre</item>
+       <item>fire</item>
+       <item>fem</item>
+       <item>seks</item>
+       <item>sju</item>
+       <item>åtte</item>
+       <item>ni</item>
+       <item>ti</item>
+       <item>elleve</item>
+    </string-array>
+</resources>

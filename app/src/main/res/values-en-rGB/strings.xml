@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Fuzzy Text</string>
-    <string name="my_digital_name">Fuzzy Text</string>
     <string-array name="rels">
         <item>*%1$s o\'clock</item>
         <item>five past *%1$s</item>
