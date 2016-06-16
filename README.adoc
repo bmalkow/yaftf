@@ -12,7 +12,7 @@ YAFT is watch face for Android Wear device.
 It is inspired by https://github.com/wearewip/PebbleTextWatch[PebbleTextWatch].
 Algorithms and translations are [line-through]#stolen# taken from https://github.com/hallettj/Fuzzy-Text-International[Fuzzy Text International] (thanks guys!).
 
-image:app/src/main/res/drawable-nodpi/preview_digital.png[Face preview]
+image:wear/src/main/res/drawable-nodpi/preview_digital.png[Face preview]
 
 == Features:
 
@@ -21,3 +21,7 @@ image:app/src/main/res/drawable-nodpi/preview_digital.png[Face preview]
 * notification when connection with phone is lost
 * no configuration
 
+
+++++
+<a href='https://play.google.com/store/apps/details?id=net.malkowscy.fuzzytextface&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img  width="210" height="80" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+++++
