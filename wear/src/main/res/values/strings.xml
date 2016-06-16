@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Yet Another Fuzzy Text Face</string>
+    <string name="my_digital_name">Yet Another Fuzzy Text Face</string>
+    <string name="date_format">*%1$s \n%2$s %3$s</string>
+    <string name="connection_lost">Hey dude! Where is your phone?</string>
+    <string-array name="rels">
+        <item>*%1$s o\'clock</item>
+        <item>five after *%1$s</item>
+        <item>ten after *%1$s</item>
+        <item>quarter after *%1$s</item>
+        <item>twenty after *%1$s</item>
+        <item>twenty five after *%1$s</item>
+        <item>half past *%1$s</item>
+        <item>twenty five to *%2$s</item>
+        <item>twenty to *%2$s</item>
+        <item>quarter to *%2$s</item>
+        <item>ten to *%2$s</item>
+        <item>five to *%2$s</item>
+    </string-array>
+    <string-array name="days">
+        <item>sun</item>
+        <item>mon</item>
+        <item>tue</item>
+        <item>wed</item>
+        <item>thur</item>
+        <item>fri</item>
+        <item>sat</item>
+    </string-array>
+    <string-array name="months">
+        <item>jan</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>apr</item>
+        <item>may</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dec</item>
+    </string-array>
+    <string-array name="hours">
+
+        <!-- AM hours-->
+        <item>twelve</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
+        <item>eight</item>
+        <item>nine</item>
+        <item>ten</item>
+        <item>eleven</item>
+
+        <!-- PM hours-->
+        <item>twelve</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
+        <item>eight</item>
+        <item>nine</item>
+        <item>ten</item>
+        <item>eleven</item>
+    </string-array>
+</resources>
